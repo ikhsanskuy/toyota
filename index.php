@@ -1550,7 +1550,6 @@
               New York, NY 535022 - US<br>
             </p>
           </div>
-
         </div>
 
         <div class="col-lg-3 col-md-6 footer-links d-flex">
