@@ -1,3 +1,26 @@
+<?php
+session_start();
+include "../connection.php";
+
+if (isset($_POST['login'])) {
+
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+
+    $sql = mysqli_query($con, "SELECT * FROM `admin` WHERE `admin` = '$username' AND `password` = PASSWORD('$password') ");
+    $data = mysqli_fetch_array($sql);
+    $cek = mysqli_num_rows($sql);
+
+    if ($cek === 1) {
+        $_SESSION['admin'] = $username;
+        echo "<script>alert('Selamat datang'); 
+                location.href='index.php';</script>";
+    } else {
+        echo "<script>alert('Mohon maaf akun salah'); 
+            location.href='';</script>";
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
   
@@ -42,29 +65,7 @@
 <body>
 
 
-<?php
-session_start();
-include "../connection.php";
 
-if (isset($_POST['login'])) {
-
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-
-    $sql = mysqli_query($con, "SELECT * FROM `admin` WHERE `admin` = '$username' AND `password` = PASSWORD('$password') ");
-    $data = mysqli_fetch_array($sql);
-    $cek = mysqli_num_rows($sql);
-
-    if ($cek === 1) {
-        $_SESSION['admin'] = $username;
-        echo "<script>alert('Selamat datang'); 
-                location.href='index.php';</script>";
-    } else {
-        echo "<script>alert('Mohon maaf akun salah'); 
-            location.href='';</script>";
-    }
-}
-?>
 
 <main>
     <div class="container">
