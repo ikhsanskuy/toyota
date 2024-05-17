@@ -431,11 +431,11 @@
                 </p>
 
                 <p class="price">
-                Rp. <?= $data['price'] ; ?>
+                Rp. <?= number_format($data['price'], 0, '.', '.'); ?>
                 </p>
 
                 <a href="http://wa.me/6281218660906" class="btn btn-outline-success mb-3" target="_blank">Harga Promo</a><br>
-                  <a href="https://www.toyota.astra.co.id/sites/default/files/2022-11/brochures/Catalog%20All%20New%20Kijang%20Innova%20Zenix%20%2821%20Nov%29_1.pdf" target="_blank">
+                  <a href="<?= $data['brochure'] ; ?>" target="_blank">
                     <lord-icon
                     src="https://cdn.lordicon.com/iiixgoqp.json"
                     trigger="loop"
@@ -460,115 +460,38 @@
 
             <div class="row gy-5">
 
-              <div class="col-lg-4 menu-item">
-                <img src="assets/img/menu/raize.png" class="menu-img img-fluid" alt="">
-                <h4>
-                  All New Raize GR Sport
-                </h4>
-                <p class="ingredients">
-                  Starting from
-                </p>
-                <p class="price">
-                  Rp235.000.000
-                </p>
-                <a href="http://wa.me/6281218660906" class="btn btn-outline-success mb-3" target="_blank">Harga Promo</a><br>
-                  <a href="https://www.toyota.astra.co.id/sites/default/files/2022-08/brochures/leaflet_raize_grs_0722.pdf" target="_blank">
-                    <lord-icon
-                    src="https://cdn.lordicon.com/iiixgoqp.json"
-                    trigger="loop"
-                    style="width:25px;height:25px">
-                    </lord-icon><br>  
-                    <small>Lihat E-Brochure</small>
-                  </a>
-              </div>
+              <?php $fetch=$con->query("SELECT * FROM cars WHERE `type` = 'suv' AND `active` = 1"); ?>
+              <?php while ($data = $fetch->fetch_assoc()) { ?>
 
               <div class="col-lg-4 menu-item">
-                <img src="assets/img/menu/fortuner.png" class="menu-img img-fluid" alt="">
+
+                <img src="admin/file/photo/<?= $data['photo'] ; ?>" class="menu-img img-fluid" alt="">
+
                 <h4>
-                  New Fortuner GR Sport
+                <?= $data['name'] ; ?>
                 </h4>
+
                 <p class="ingredients">
                   Starting from
                 </p>
+
                 <p class="price">
-                  Rp604.450.000
+                Rp. <?= number_format($data['price'], 0, '.', '.'); ?>
                 </p>
+
                 <a href="http://wa.me/6281218660906" class="btn btn-outline-success mb-3" target="_blank">Harga Promo</a><br>
-                  <a href="https://www.toyota.astra.co.id/sites/default/files/2022-09/brochures/Catalog_Fortuner_GR_Sport_0922_compressed_0.pdf" target="_blank">
+                  <a href="<?= $data['brochure'] ; ?>" target="_blank">
                     <lord-icon
                     src="https://cdn.lordicon.com/iiixgoqp.json"
                     trigger="loop"
                     style="width:25px;height:25px">
                     </lord-icon><br>  
                     <small>Lihat E-Brochure</small>
-                  </a>
+                </a>
+                
               </div>
 
-              <div class="col-lg-4 menu-item">
-                <img src="assets/img/menu/corolacros.png" class="menu-img img-fluid" alt="">
-                <h4>
-                  All New Corolla Cross Hybrid
-                </h4>
-                <p class="ingredients">
-                  Starting from
-                </p>
-                <p class="price">
-                  Rp568.200.000
-                </p>
-                <a href="http://wa.me/6281218660906" class="btn btn-outline-success mb-3" target="_blank">Harga Promo</a><br>
-                  <a href="https://www.toyota.astra.co.id/sites/default/files/2022-07/brochures/catalog_corolla_cross_q2_0722_1.pdf" target="_blank">
-                    <lord-icon
-                    src="https://cdn.lordicon.com/iiixgoqp.json"
-                    trigger="loop"
-                    style="width:25px;height:25px">
-                    </lord-icon><br>  
-                    <small>Lihat E-Brochure</small>
-                  </a>
-              </div>
-
-              <div class="col-lg-4 menu-item">
-                <img src="assets/img/menu/rush.png" class="menu-img img-fluid" alt="">
-                <h4>
-                  New Rush GR Sport
-                </h4>
-                <p class="ingredients">
-                  Starting from
-                </p>
-                <p class="price">
-                  Rp282.700.000
-                </p>
-                <a href="http://wa.me/6281218660906" class="btn btn-outline-success mb-3" target="_blank">Harga Promo</a><br>
-                  <a href="https://www.toyota.astra.co.id/sites/default/files/2022-01/brochures/leaflet_rush_gr_update_jan_2022.pdf" target="_blank">
-                    <lord-icon
-                    src="https://cdn.lordicon.com/iiixgoqp.json"
-                    trigger="loop"
-                    style="width:25px;height:25px">
-                    </lord-icon><br>  
-                    <small>Lihat E-Brochure</small>
-                  </a>
-              </div>
-
-              <div class="col-lg-4 menu-item">
-                <img src="assets/img/menu/lc.png" class="menu-img img-fluid" alt="">
-                <h4>
-                  All New Land Cruiser
-                </h4>
-                <p class="ingredients">
-                  Starting from
-                </p>
-                <p class="price">
-                  Rp2.521.400.000
-                </p>
-                <a href="http://wa.me/6281218660906" class="btn btn-outline-success mb-3" target="_blank">Harga Promo</a><br>
-                  <a href="https://www.toyota.astra.co.id/sites/default/files/2022-10/brochures/catalogue_LC300_191022.pdf" target="_blank">
-                    <lord-icon
-                    src="https://cdn.lordicon.com/iiixgoqp.json"
-                    trigger="loop"
-                    style="width:25px;height:25px">
-                    </lord-icon><br>  
-                    <small>Lihat E-Brochure</small>
-                  </a>
-              </div>
+              <?php } ; ?>
 
             </div>
 
@@ -585,49 +508,38 @@
 
             <div class="row gy-5">
 
-              <div class="col-lg-4 menu-item">
-                <img src="assets/img/menu/agya.png" class="menu-img img-fluid" alt="">
-                <h4>
-                  New Agya GR Sport
-                </h4>
-                <p class="ingredients">
-                  Starting from
-                </p>
-                <p class="price">
-                  Rp167.900.000
-                </p>
-                <a href="http://wa.me/6281218660906" class="btn btn-outline-success mb-3" target="_blank">Harga Promo</a><br>
-                  <a href="https://www.toyota.astra.co.id/sites/default/files/2022-08/brochures/leaflet_agya_0722.pdf" target="_blank">
-                    <lord-icon
-                    src="https://cdn.lordicon.com/iiixgoqp.json"
-                    trigger="loop"
-                    style="width:25px;height:25px">
-                    </lord-icon><br>  
-                    <small>Lihat E-Brochure</small>
-                  </a>
-              </div>
+            <?php $fetch=$con->query("SELECT * FROM cars WHERE `type` = 'hatchback' AND `active` = 1"); ?>
+              <?php while ($data = $fetch->fetch_assoc()) { ?>
 
               <div class="col-lg-4 menu-item">
-                <img src="assets/img/menu/yariss.png" class="menu-img img-fluid" alt="">
+
+                <img src="admin/file/photo/<?= $data['photo'] ; ?>" class="menu-img img-fluid" alt="">
+
                 <h4>
-                  New Yaris GR Sport
+                <?= $data['name'] ; ?>
                 </h4>
+
                 <p class="ingredients">
                   Starting from
                 </p>
+
                 <p class="price">
-                  Rp338.200.000
+                Rp. <?= number_format($data['price'], 0, '.', '.'); ?>
                 </p>
+
                 <a href="http://wa.me/6281218660906" class="btn btn-outline-success mb-3" target="_blank">Harga Promo</a><br>
-                  <a href="https://www.toyota.astra.co.id/sites/default/files/2022-08/brochures/leaflet_yaris_2022.pdf" target="_blank">
+                  <a href="<?= $data['brochure'] ; ?>" target="_blank">
                     <lord-icon
                     src="https://cdn.lordicon.com/iiixgoqp.json"
                     trigger="loop"
                     style="width:25px;height:25px">
                     </lord-icon><br>  
                     <small>Lihat E-Brochure</small>
-                  </a>
+                </a>
+                
               </div>
+
+              <?php } ; ?>
 
             </div>
           </div>
@@ -641,149 +553,38 @@
             </div>
 
             <div class="row gy-5">
-              <!-- <div class="col-lg-4 menu-item">
-                <a href="assets/img/menu/menu-item-2.png" class="glightbox"><img src="assets/img/menu/menu-item-2.png" class="menu-img img-fluid" alt=""></a>
-                <h4>Aut Luia</h4>
-                <p class="ingredients">
-                  Lorem, deren, trataro, filede, nerada
-                </p>
-                <p class="price">
-                  $14.95
-                </p>
-                <button type="button" class="btn btn-success">Primary</button>
-              </div> -->
-              
-              <div class="col-lg-4 menu-item">
-                <img src="assets/img/menu/zenix.png" class="menu-img img-fluid" alt="">
-                <h4>
-                  All New Kijang Innova Zenix Hybrid EV
-                </h4>
-                <p class="ingredients">
-                  Starting from
-                </p>
-                <p class="price">
-                   Rp471.600.000
-                </p>
-                <a href="http://wa.me/6281218660906" class="btn btn-outline-success mb-3" target="_blank">Harga Promo</a><br>
-                  <a href="https://www.toyota.astra.co.id/sites/default/files/2022-11/brochures/catalog_all_new_kijang_innova_zenix_hybrid_ev_0.pdf" target="_blank">
-                    <lord-icon
-                    src="https://cdn.lordicon.com/iiixgoqp.json"
-                    trigger="loop"
-                    style="width:25px;height:25px">
-                    </lord-icon><br>  
-                    <small>Lihat E-Brochure</small>
-                  </a>
-              </div>
+              <?php $fetch=$con->query("SELECT * FROM cars WHERE `type` = 'electrified' AND `active` = 1"); ?>
+              <?php while ($data = $fetch->fetch_assoc()) { ?>
 
               <div class="col-lg-4 menu-item">
-                <img src="assets/img/menu/bz4x.png" class="menu-img img-fluid" alt="">
+
+                <img src="admin/file/photo/<?= $data['photo'] ; ?>" class="menu-img img-fluid" alt="">
+
                 <h4>
-                  All New BZ4X
+                <?= $data['name'] ; ?>
                 </h4>
+
                 <p class="ingredients">
                   Starting from
                 </p>
+
                 <p class="price">
-                  Rp1.190.000.000
+                Rp. <?= number_format($data['price'], 0, '.', '.'); ?>
                 </p>
+
                 <a href="http://wa.me/6281218660906" class="btn btn-outline-success mb-3" target="_blank">Harga Promo</a><br>
-                  <a href="https://www.toyota.astra.co.id/sites/default/files/2022-11/brochures/catalog_bz4x_compressed.pdf" target="_blank">
+                  <a href="<?= $data['brochure'] ; ?>" target="_blank">
                     <lord-icon
                     src="https://cdn.lordicon.com/iiixgoqp.json"
                     trigger="loop"
                     style="width:25px;height:25px">
                     </lord-icon><br>  
                     <small>Lihat E-Brochure</small>
-                  </a>
+                </a>
+                
               </div>
 
-              <div class="col-lg-4 menu-item">
-                <img src="assets/img/menu/chr.png" class="menu-img img-fluid" alt="">
-                <h4>
-                  New C-HR Hybrid
-                </h4>
-                <p class="ingredients">
-                  Starting from
-                </p>
-                <p class="price">
-                  Rp601.000.000
-                </p>
-                <a href="http://wa.me/6281218660906" class="btn btn-outline-success mb-3" target="_blank">Harga Promo</a><br>
-                  <a href="https://www.toyota.astra.co.id/sites/default/files/2023-01/brochures/leaflet_c-hr_Dec2022.pdf" target="_blank">
-                    <lord-icon
-                    src="https://cdn.lordicon.com/iiixgoqp.json"
-                    trigger="loop"
-                    style="width:25px;height:25px">
-                    </lord-icon><br>  
-                    <small>Lihat E-Brochure</small>
-                  </a>
-              </div>
-
-              <div class="col-lg-4 menu-item">
-                <img src="assets/img/menu/altis.png" class="menu-img img-fluid" alt="">
-                <h4>
-                  New Corolla Altis Hybrid
-                </h4>
-                <p class="ingredients">
-                  Starting from
-                </p>
-                <p class="price">
-                  Rp593.300.000
-                </p>
-                <a href="http://wa.me/6281218660906" class="btn btn-outline-success mb-3" target="_blank">Harga Promo</a><br>
-                  <a href="https://www.toyota.astra.co.id/sites/default/files/2022-02/brochures/Catalogue_Corolla_Altis_2022.pdf" target="_blank">
-                    <lord-icon
-                    src="https://cdn.lordicon.com/iiixgoqp.json"
-                    trigger="loop"
-                    style="width:25px;height:25px">
-                    </lord-icon><br>  
-                    <small>Lihat E-Brochure</small>
-                  </a>
-              </div>
-
-              <div class="col-lg-4 menu-item">
-                <img src="assets/img/menu/corollacross.png" class="menu-img img-fluid" alt="">
-                <h4>
-                  All New Corolla Cross Hybrid
-                </h4>
-                <p class="ingredients">
-                  Starting from
-                </p>
-                <p class="price">
-                  Rp568.200.000
-                </p>
-                <a href="http://wa.me/6281218660906" class="btn btn-outline-success mb-3" target="_blank">Harga Promo</a><br>
-                  <a href="https://www.toyota.astra.co.id/sites/default/files/2022-07/brochures/catalog_corolla_cross_q2_0722.pdf" target="_blank">
-                    <lord-icon
-                    src="https://cdn.lordicon.com/iiixgoqp.json"
-                    trigger="loop"
-                    style="width:25px;height:25px">
-                    </lord-icon><br>  
-                    <small>Lihat E-Brochure</small>
-                  </a>
-              </div>
-
-              <div class="col-lg-4 menu-item">
-                <img src="assets/img/menu/camryhybrid.png" class="menu-img img-fluid" alt="">
-                <h4>
-                  New Camry Hybrid
-                </h4>
-                <p class="ingredients">
-                  Starting from
-                </p>
-                <p class="price">
-                  Rp937.400.000
-                </p>
-                <a href="http://wa.me/6281218660906" class="btn btn-outline-success mb-3" target="_blank">Harga Promo</a><br>
-                  <a href="https://www.toyota.astra.co.id/sites/default/files/2022-07/brochures/catalogue_camry_0722.pdf" target="_blank">
-                    <lord-icon
-                    src="https://cdn.lordicon.com/iiixgoqp.json"
-                    trigger="loop"
-                    style="width:25px;height:25px">
-                    </lord-icon><br>  
-                    <small>Lihat E-Brochure</small>
-                  </a>
-              </div>
+              <?php } ; ?>
 
             </div>
           </div>
@@ -797,71 +598,38 @@
 
             <div class="row gy-5">
 
-              <div class="col-lg-4 menu-item">
-                <img src="assets/img/menu/supra.png" class="menu-img img-fluid" alt="">
-                <h4>
-                  New GR Supra
-                </h4>
-                <p class="ingredients">
-                  Starting from
-                </p>
-                <p class="price">
-                  Rp2.188.400.000
-                </p>
-                <a href="http://wa.me/6281218660906" class="btn btn-outline-success mb-3" target="_blank">Harga Promo</a><br>
-                  <a href="https://www.toyota.astra.co.id/sites/default/files/2022-12/brochures/Flyer_GR_Supra_2022.pdf" target="_blank">
-                    <lord-icon
-                    src="https://cdn.lordicon.com/iiixgoqp.json"
-                    trigger="loop"
-                    style="width:25px;height:25px">
-                    </lord-icon><br>  
-                    <small>Lihat E-Brochure</small>
-                  </a>
-              </div>
+            <?php $fetch=$con->query("SELECT * FROM cars WHERE `type` = 'sports' AND `active` = 1"); ?>
+              <?php while ($data = $fetch->fetch_assoc()) { ?>
 
               <div class="col-lg-4 menu-item">
-                <img src="assets/img/menu/86.png" class="menu-img img-fluid" alt="">
+
+                <img src="admin/file/photo/<?= $data['photo'] ; ?>" class="menu-img img-fluid" alt="">
+
                 <h4>
-                  All New GR 86
+                <?= $data['name'] ; ?>
                 </h4>
+
                 <p class="ingredients">
                   Starting from
                 </p>
+
                 <p class="price">
-                  Rp984.100.000
+                Rp. <?= number_format($data['price'], 0, '.', '.'); ?>
                 </p>
+
                 <a href="http://wa.me/6281218660906" class="btn btn-outline-success mb-3" target="_blank">Harga Promo</a><br>
-                  <a href="https://www.toyota.astra.co.id/sites/default/files/2022-08/brochures/leaflet_gr86_new_compressed.pdf" target="_blank">
+                  <a href="<?= $data['brochure'] ; ?>" target="_blank">
                     <lord-icon
                     src="https://cdn.lordicon.com/iiixgoqp.json"
                     trigger="loop"
                     style="width:25px;height:25px">
                     </lord-icon><br>  
                     <small>Lihat E-Brochure</small>
-                  </a>
+                </a>
+                
               </div>
 
-              <div class="col-lg-4 menu-item">
-                <img src="assets/img/menu/yaris.png" class="menu-img img-fluid" alt="">
-                <h4>
-                  GR Yaris
-                </h4>
-                <p class="ingredients">
-                  Starting from
-                </p>
-                <p class="price">
-                  Sold Out
-                </p>
-                <a href="http://wa.me/6281218660906" class="btn btn-outline-success mb-3" target="_blank">Harga Promo</a><br>
-                  <a href="https://www.toyota.astra.co.id/sites/default/files/2022-09/brochures/catalogue_gr_yaris_compressed.pdf" target="_blank">
-                    <lord-icon
-                    src="https://cdn.lordicon.com/iiixgoqp.json"
-                    trigger="loop"
-                    style="width:25px;height:25px">
-                    </lord-icon><br>  
-                    <small>Lihat E-Brochure</small>
-                  </a>
-              </div>
+              <?php } ; ?>
 
               
             </div>
@@ -875,72 +643,38 @@
             </div>
 
             <div class="row gy-5">
+            <?php $fetch=$con->query("SELECT * FROM cars WHERE `type` = 'sedan' AND `active` = 1"); ?>
+              <?php while ($data = $fetch->fetch_assoc()) { ?>
 
               <div class="col-lg-4 menu-item">
-                <img src="assets/img/menu/vios.png" class="menu-img img-fluid" alt="">
+
+                <img src="admin/file/photo/<?= $data['photo'] ; ?>" class="menu-img img-fluid" alt="">
+
                 <h4>
-                  All New Vios
+                <?= $data['name'] ; ?>
                 </h4>
+
                 <p class="ingredients">
                   Starting from
                 </p>
+
                 <p class="price">
-                  Rp322.900.000
+                Rp. <?= number_format($data['price'], 0, '.', '.'); ?>
                 </p>
+
                 <a href="http://wa.me/6281218660906" class="btn btn-outline-success mb-3" target="_blank">Harga Promo</a><br>
-                  <a href="https://www.toyota.astra.co.id/sites/default/files/2022-10/brochures/leaflet_all_new_vios_1.pdf" target="_blank">
+                  <a href="<?= $data['brochure'] ; ?>" target="_blank">
                     <lord-icon
                     src="https://cdn.lordicon.com/iiixgoqp.json"
                     trigger="loop"
                     style="width:25px;height:25px">
                     </lord-icon><br>  
                     <small>Lihat E-Brochure</small>
-                  </a>
+                </a>
+                
               </div>
 
-              <div class="col-lg-4 menu-item">
-                <img src="assets/img/menu/altiss.png" class="menu-img img-fluid" alt="">
-                <h4>
-                  New Corolla Altis
-                </h4>
-                <p class="ingredients">
-                  Starting from
-                </p>
-                <p class="price">
-                  Rp538.900.000
-                </p>
-                <a href="http://wa.me/6281218660906" class="btn btn-outline-success mb-3" target="_blank">Harga Promo</a><br>
-                  <a href="https://www.toyota.astra.co.id/sites/default/files/2022-02/brochures/Catalogue_Corolla_Altis_2022_0.pdf" target="_blank">
-                    <lord-icon
-                    src="https://cdn.lordicon.com/iiixgoqp.json"
-                    trigger="loop"
-                    style="width:25px;height:25px">
-                    </lord-icon><br>  
-                    <small>Lihat E-Brochure</small>
-                  </a>
-              </div>
-
-              <div class="col-lg-4 menu-item">
-                <img src="assets/img/menu/camry.png" class="menu-img img-fluid" alt="">
-                <h4>
-                  New Camry
-                </h4>
-                <p class="ingredients">
-                  Starting from
-                </p>
-                <p class="price">
-                  Rp799.300.000
-                </p>
-                <a href="http://wa.me/6281218660906" class="btn btn-outline-success mb-3" target="_blank">Harga Promo</a><br>
-                  <a href="https://www.toyota.astra.co.id/sites/default/files/2022-09/brochures/catalogue_camry_0722.pdf" target="_blank">
-                    <lord-icon
-                    src="https://cdn.lordicon.com/iiixgoqp.json"
-                    trigger="loop"
-                    style="width:25px;height:25px">
-                    </lord-icon><br>  
-                    <small>Lihat E-Brochure</small>
-                  </a>
-              </div>
+              <?php } ; ?>
 
 
             </div>
@@ -955,137 +689,38 @@
 
             <div class="row gy-5">
 
-              <div class="col-lg-4 menu-item">
-                <img src="assets/img/menu/hilux.png" class="menu-img img-fluid" alt="">
-                <h4>
-                  New Hilux GR Sport
-                </h4>
-                <p class="ingredients">
-                  Starting from
-                </p>
-                <p class="price">
-                  Rp731.400.000
-                </p>
-                <a href="http://wa.me/6281218660906" class="btn btn-outline-success mb-3" target="_blank">Harga Promo</a><br>
-                  <a href="https://www.toyota.astra.co.id/sites/default/files/2022-12/brochures/flyer_hilux_gr.pdf" target="_blank">
-                    <lord-icon
-                    src="https://cdn.lordicon.com/iiixgoqp.json"
-                    trigger="loop"
-                    style="width:25px;height:25px">
-                    </lord-icon><br>  
-                    <small>Lihat E-Brochure</small>
-                  </a>
-              </div>
+            <?php $fetch=$con->query("SELECT * FROM cars WHERE `type` = 'commercial' AND `active` = 1"); ?>
+              <?php while ($data = $fetch->fetch_assoc()) { ?>
 
               <div class="col-lg-4 menu-item">
-                <img src="assets/img/menu/dyna.png" class="menu-img img-fluid" alt="">
+
+                <img src="admin/file/photo/<?= $data['photo'] ; ?>" class="menu-img img-fluid" alt="">
+
                 <h4>
-                  New Dyna
+                <?= $data['name'] ; ?>
                 </h4>
+
                 <p class="ingredients">
                   Starting from
                 </p>
+
                 <p class="price">
-                  Rp377.300.000
+                Rp. <?= number_format($data['price'], 0, '.', '.'); ?>
                 </p>
+
                 <a href="http://wa.me/6281218660906" class="btn btn-outline-success mb-3" target="_blank">Harga Promo</a><br>
-                  <a href="https://www.toyota.astra.co.id/sites/default/files/2022-04/brochures/Leaflet_New_Dyna_compressed.pdf" target="_blank">
+                  <a href="<?= $data['brochure'] ; ?>" target="_blank">
                     <lord-icon
                     src="https://cdn.lordicon.com/iiixgoqp.json"
                     trigger="loop"
                     style="width:25px;height:25px">
                     </lord-icon><br>  
                     <small>Lihat E-Brochure</small>
-                  </a>
+                </a>
+                
               </div>
 
-              <div class="col-lg-4 menu-item">
-                <img src="assets/img/menu/hiace.png" class="menu-img img-fluid" alt="">
-                <h4>
-                  New Hiace Commuter
-                </h4>
-                <p class="ingredients">
-                  Starting from
-                </p>
-                <p class="price">
-                  Rp561.800.000
-                </p>
-                <a href="http://wa.me/6281218660906" class="btn btn-outline-success mb-3" target="_blank">Harga Promo</a><br>
-                  <a href="https://www.toyota.astra.co.id/sites/default/files/2022-04/brochures/leaflet_hiace_080422_0.pdf" target="_blank">
-                    <lord-icon
-                    src="https://cdn.lordicon.com/iiixgoqp.json"
-                    trigger="loop"
-                    style="width:25px;height:25px">
-                    </lord-icon><br>  
-                    <small>Lihat E-Brochure</small>
-                  </a>
-              </div>
-
-              <div class="col-lg-4 menu-item">
-                <img src="assets/img/menu/hiacep.png" class="menu-img img-fluid" alt="">
-                <h4>
-                  New Hiace Premio
-                </h4>
-                <p class="ingredients">
-                  Starting from
-                </p>
-                <p class="price">
-                  Rp647.300.000
-                </p>
-                <a href="http://wa.me/6281218660906" class="btn btn-outline-success mb-3" target="_blank">Harga Promo</a><br>
-                  <a href="https://www.toyota.astra.co.id/sites/default/files/2022-04/brochures/leaflet_hiace_080422.pdf" target="_blank">
-                    <lord-icon
-                    src="https://cdn.lordicon.com/iiixgoqp.json"
-                    trigger="loop"
-                    style="width:25px;height:25px">
-                    </lord-icon><br>  
-                    <small>Lihat E-Brochure</small>
-                  </a>
-              </div>
-
-              <div class="col-lg-4 menu-item">
-                <img src="assets/img/menu/hiluxd.png" class="menu-img img-fluid" alt="">
-                <h4>
-                  New Hilux D Cab
-                </h4>
-                <p class="ingredients">
-                  Starting from
-                </p>
-                <p class="price">
-                  Rp520.800.000
-                </p>
-                <a href="http://wa.me/6281218660906" class="btn btn-outline-success mb-3" target="_blank">Harga Promo</a><br>
-                  <a href="https://www.toyota.astra.co.id/sites/default/files/2022-07/brochures/catalogue_hilux_q2_0722_compressed_0.pdf" target="_blank">
-                    <lord-icon
-                    src="https://cdn.lordicon.com/iiixgoqp.json"
-                    trigger="loop"
-                    style="width:25px;height:25px">
-                    </lord-icon><br>  
-                    <small>Lihat E-Brochure</small>
-                  </a>
-              </div>
-
-              <div class="col-lg-4 menu-item">
-                <img src="assets/img/menu/hiluxs.png" class="menu-img img-fluid" alt="">
-                <h4>
-                  New Hilux S Cab
-                </h4>
-                <p class="ingredients">
-                  Starting from
-                </p>
-                <p class="price">
-                  Rp277.200.000
-                </p>
-                <a href="http://wa.me/6281218660906" class="btn btn-outline-success mb-3" target="_blank">Harga Promo</a><br>
-                  <a href="https://www.toyota.astra.co.id/sites/default/files/2022-07/brochures/flyer_hilux_s_cab_q2_0722_compressed.pdf" target="_blank">
-                    <lord-icon
-                    src="https://cdn.lordicon.com/iiixgoqp.json"
-                    trigger="loop"
-                    style="width:25px;height:25px">
-                    </lord-icon><br>  
-                    <small>Lihat E-Brochure</small>
-                  </a>
-              </div>
+              <?php } ; ?>
 
 
             </div>

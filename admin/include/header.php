@@ -1,3 +1,13 @@
+<?php
+session_start();
+include "../connection.php";
+
+if (!isset($_SESSION['admin'])) {
+    echo "<script>alert('Silahkan login terlebih dahulu');
+        location.href= 'login.php'
+        </script>";
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
   
@@ -5,7 +15,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Toyota Tangerang</title>
+  <title>Admin Page</title>
 
   <meta content="Temukan penawaran terbaik untuk mobil Toyota di Tangerang! Kami menawarkan berbagai pilihan Toyota baru dan bekas dengan diskon dan promosi luar biasa." name="description">
   <meta content="toyota murah, promo toyota, toyota tangerang" name="keywords">
@@ -213,11 +223,11 @@
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
             <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
-            <span class="d-none d-md-block dropdown-toggle ps-2">K. Anderson</span>
+            <span class="d-none d-md-block dropdown-toggle ps-2">Admin</span>
           </a><!-- End Profile Iamge Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
-            <li class="dropdown-header">
+            <!-- <li class="dropdown-header">
               <h6>Kevin Anderson</h6>
               <span>Web Designer</span>
             </li>
@@ -253,7 +263,7 @@
             </li>
             <li>
               <hr class="dropdown-divider">
-            </li>
+            </li> -->
 
             <li>
               <a class="dropdown-item d-flex align-items-center" href="#">
