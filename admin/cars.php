@@ -179,8 +179,9 @@
                         <div class="card-body">
                           <h5 class="card-title"><?= $data['name'] ; ?></h5>
                           <p class="card-text">Rp. <?= number_format($data['price'], 0, '.', ','); ?></p>
-                          <!-- <a href="#" class="btn btn-warning">Edit</a> -->
-                          <a href="#" class="btn btn-warning edit-car-btn" data-car-id="<?= $data['id']; ?>">Edit</a>
+                          <button type="button" class="btn btn-warning edit-car-btn" data-bs-toggle="modal" data-bs-target="#basicModal" data-car-id="<?= $data['id']; ?>" >
+                            Edit
+                          </button>
                           <a href="#" class="btn btn-danger">Delete</a>
                         </div>
                       </div>
