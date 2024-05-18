@@ -346,7 +346,6 @@
   </main><!-- End #main -->
 
 <?php include 'include/footer.php' ; ?>
-
 <script>
   // Attach click event listener to "Edit" buttons (assuming they have a class "edit-car-btn")
 $(document).on('click', '.edit-car-btn', function(e) {
