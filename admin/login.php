@@ -7,7 +7,8 @@ if (isset($_POST['login'])) {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    $sql = mysqli_query($con, "SELECT * FROM `admin` WHERE `admin` = '$username' AND `password` = PASSWORD('$password') ");
+    // $sql = mysqli_query($con, "SELECT * FROM `admin` WHERE `admin` = '$username' AND `password` = PASSWORD('$password') ");
+    $sql = mysqli_query($con, "SELECT * FROM `admin` WHERE `admin` = '$username' AND `password` = '$password' ");
     $data = mysqli_fetch_array($sql);
     $cek = mysqli_num_rows($sql);
 

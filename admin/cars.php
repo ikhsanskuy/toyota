@@ -6,6 +6,12 @@ function format_uang($angka)
 {
     return number_format($angka, 0, ",", ".");
 }
+
+// mac
+// $baseUrl = 'http://localhost/toyota/admin/config';
+// linux
+$baseUrl = 'http://toyota.test/admin';
+
 ?>
 
 
@@ -79,6 +85,7 @@ function format_uang($angka)
           </div>
         </div>
 
+        <!-- update modal -->
         <div class="modal fade" id="updateCarModal" tabindex="-1" aria-labelledby="updateCarModalLabel" aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -366,7 +373,8 @@ $(document).on('click', '.edit-car-btn', function(e) {
   // Use AJAX to fetch car data for edit
   $.ajax({
     // url: '/admin/config/get-car-data.php', // Replace with your endpoint to get car data
-    url: 'http://localhost/toyota/admin/config/get-car-data.php', // Replace with your endpoint to get car data
+    // url: 'http://localhost/toyota/admin/config/get-car-data.php',
+    url: '<?php echo $baseUrl; ?>/config/get-car-data.php',
     method: 'POST',
     data: { id: carId },
     success: function(data) {
@@ -374,7 +382,7 @@ $(document).on('click', '.edit-car-btn', function(e) {
 
       // Extract image URL from response
       // console.log(response.photo);
-      const imageUrl = `http://localhost/toyota/admin/file/photo/${response.photo}`;
+      const imageUrl = `<?php echo $baseUrl; ?>/file/photo/${response.photo}`;
 
       $('#carIdToUpdate').val(response.id); // Set the hidden car ID field
       $('#updateName').val(response.name);
@@ -404,12 +412,12 @@ $('#updateCarForm').submit(function(e) {
   // Use AJAX to send update data
   $.ajax({
     // url: 'http://localhost/toyota/admindfdf/config/update-cars.php', // Replace with your actual update endpoint
-    url: 'http://localhost/toyota/admin/config/update-cars.php?carId=' . carId, // Replace with your actual update endpoint
-    method: 'POST',
+    url: '<?php echo $baseUrl; ?>/config/update-cars.php?id=' . carId, // Replace with your actual update endpoint
+    type: 'PUT',
     data: formData,
     processData: false, // Don't process data for file uploads
     contentType: false, // Set appropriate content type for FormData
-    success: function(response) {
+    success: function(response, error) {
       if (response.success) {
         // Handle successful update (e.g., close modal, show success message, update displayed data)
         $('#updateCarModal').modal('hide');
@@ -420,8 +428,11 @@ $('#updateCarForm').submit(function(e) {
         updateCarList();
       } else {
         // Handle update error (e.g., display error message)
-        alert('Error updating car!' + response.message);
+        alert('Error updating car!' + response.message + error);
       }
+    },
+    error: function(xhr, status, error) {
+      alert('An error occurred: ' + error);
     }
   });
 });
