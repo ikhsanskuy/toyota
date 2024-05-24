@@ -1,8 +1,14 @@
-<?php include "../connection.php";  ?>
+<?php include "../connection.php";
+include 'include/header.php';
+include 'include/sidebar.php' ; 
 
-<?php include 'include/header.php' ; ?>
+function format_uang($angka)
+{
+    return number_format($angka, 0, ",", ".");
+}
+?>
 
-<?php include 'include/sidebar.php' ; ?>
+
 
   <main id="main" class="main">
 
@@ -91,7 +97,8 @@
                     <input type="number" name="price" class="form-control" id="updatePrice" placeholder="e.g. 200.000.000">
                   </div>
                   <div class="form-group mb-3">
-                    <label for="updatePhoto">Photo (Optional)</label>
+                    <label for="updatePhoto">Photo</label>
+                    <img class="col-sm-5 d-block" id="carImagePreview" alt="Car Image">  
                     <input type="file" name="photo" class="form-control" id="updatePhoto">
                   </div>
                   <div class="form-group mb-3">
@@ -179,7 +186,8 @@
                         <div class="card-body">
                           <h5 class="card-title"><?= $data['name'] ; ?></h5>
                           <p class="card-text">Rp. <?= number_format($data['price'], 0, '.', ','); ?></p>
-                          <button type="button" class="btn btn-warning edit-car-btn" data-bs-toggle="modal" data-bs-target="#basicModal" data-car-id="<?= $data['id']; ?>" >
+                          <input type="hidden" name="carIdToUpdate" value="<?= $data['id']; ?>">
+                          <button type="button" class="btn btn-warning edit-car-btn" data-car-id="<?= $data['id']; ?>" >
                             Edit
                           </button>
                           <a href="#" class="btn btn-danger">Delete</a>
@@ -346,6 +354,7 @@
   </main><!-- End #main -->
 
 <?php include 'include/footer.php' ; ?>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <script>
   // Attach click event listener to "Edit" buttons (assuming they have a class "edit-car-btn")
 $(document).on('click', '.edit-car-btn', function(e) {
@@ -356,19 +365,31 @@ $(document).on('click', '.edit-car-btn', function(e) {
 
   // Use AJAX to fetch car data for edit
   $.ajax({
-    url: '/get-car-data.php', // Replace with your endpoint to get car data
+    // url: '/admin/config/get-car-data.php', // Replace with your endpoint to get car data
+    url: 'http://localhost/toyota/admin/config/get-car-data.php', // Replace with your endpoint to get car data
+    method: 'POST',
     data: { id: carId },
     success: function(data) {
-      // Populate modal form fields with the fetched data
-      $('#carIdToUpdate').val(data.id); // Set the hidden car ID field
-      $('#updateName').val(data.name);
-      $('#updatePrice').val(data.price);
-      $('#updateType').val(data.type); // Set the selected option in the type dropdown
-      $('#updateActive').prop('checked', data.active === 1); // Check the active checkbox if applicable
+      const response= JSON.parse(data);
+
+      // Extract image URL from response
+      // console.log(response.photo);
+      const imageUrl = `http://localhost/toyota/admin/file/photo/${response.photo}`;
+
+      $('#carIdToUpdate').val(response.id); // Set the hidden car ID field
+      $('#updateName').val(response.name);
+      $('#updatePrice').val(response.price);
+      $('#updateType').val(response.type); // Set the selected option in the type dropdown
+      $('#updateActive').prop('checked', response.active === 1); // Check the active checkbox if applicable
+
+      $('#carImagePreview').attr('src', imageUrl);
 
       // Show the update modal
       $('#updateCarModal').modal('show');
-    }
+    },
+    error: function(xhr, status, error) {
+    console.error("Error fetching data:", status, error);
+  }
   });
 });
 
@@ -379,9 +400,11 @@ $('#updateCarForm').submit(function(e) {
   // Get form data (consider using FormData for file uploads)
   var formData = new FormData($(this)[0]); // Assuming form has ID "updateCarForm"
 
+  let carId = $(this).data('carId');
   // Use AJAX to send update data
   $.ajax({
-    url: '/config/update-car.php', // Replace with your actual update endpoint
+    // url: 'http://localhost/toyota/admindfdf/config/update-cars.php', // Replace with your actual update endpoint
+    url: 'http://localhost/toyota/admin/config/update-cars.php?carId=' . carId, // Replace with your actual update endpoint
     method: 'POST',
     data: formData,
     processData: false, // Don't process data for file uploads
@@ -397,10 +420,43 @@ $('#updateCarForm').submit(function(e) {
         updateCarList();
       } else {
         // Handle update error (e.g., display error message)
-        alert('Error updating car!');
+        alert('Error updating car!' + response.message);
       }
     }
   });
 });
+
+// $('.btn-update-kategori').on('click', function (e) {
+//         e.preventDefault();
+//         let form=$('.form-kategori')[0];
+//         let data=new FormData(form);
+//         let carId = $(this).data('carId');
+//         const categoryId = $("#current_id_category").val();
+//         // Perform the update AJAX request with form data
+//         let url='http://localhost/toyota/admin/config/update-carsphp?carId=' . carId;
+
+//         url=url.replace(':CategoryId',categoryId);
+//         console.log(url);
+//         $.ajax({
+//             headers: {
+//                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+//             },
+//             url : url,
+//             type: 'POST',
+//             data: data,
+//             dataType: 'json',
+//             processData: false,
+//             contentType: false,
+//             cache: false,
+//             success: function (updateResponse) {
+//                 // Handle the success response (e.g., close the modal, update UI, etc.)
+//                 $('#update-modal').modal('hide');
+//                 window.location.reload();
+//             },
+//             error: function (updateError) {
+//                 console.error('Error updating category:', updateError);
+//             }
+//         });
+//     });
 
 </script>

@@ -1,29 +1,3 @@
-<?php 
-// include "../../connection.php";  
-
-// if (isset($_POST['submit'])) {
-//     $name = $_POST['name'];
-//     $description = $_POST['description'];
-//     $photo = $_POST['photo'];
-//     $price = $_POST['price'];
-//     $promo_price = $_POST['promo_price'];
-//     $brochure = $_POST['brochure'];
-//     $type = $_POST['type'];
-
-//     $query = mysqli_query($con, "INSERT INTO `cars` (`name`,`description`,`photo`,`price`,`promo_price`,`brochure`,`type`) 
-//                                             VALUES ('$name','$description','$photo','$price','$promo_price','$brochure','$type')");
-
-//     if ($query) {
-//         echo "<script>alert('Register sukses');
-//         location.href='../cars.php';</script>";
-//     } else {
-//         echo "<script>alert('Gagal register');
-//         location.href='../cars.php';</script>";
-//     }
-// }
-
-?>
-
 <?php
 include "../../connection.php";
 
