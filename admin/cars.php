@@ -8,9 +8,9 @@ function format_uang($angka)
 }
 
 // mac
-// $baseUrl = 'http://localhost/toyota/admin/config';
+$baseUrl = 'http://localhost/toyota/admin/';
 // linux
-$baseUrl = 'http://toyota.test/admin';
+// $baseUrl = 'http://toyota.test/admin';
 
 ?>
 
@@ -20,13 +20,6 @@ $baseUrl = 'http://toyota.test/admin';
 
     <div class="pagetitle">
       <h1>Cards</h1>
-      <nav>
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-          <li class="breadcrumb-item">Components</li>
-          <li class="breadcrumb-item active">Cards</li>
-        </ol>
-      </nav>
     </div><!-- End Page Title -->
 
     <section class="section">
@@ -94,7 +87,14 @@ $baseUrl = 'http://toyota.test/admin';
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
-                <form action="config/update-car.php" method="POST" enctype="multipart/form-data" id="updateCarForm">
+              <!-- <form action="#" method="POST" enctype="multipart/form-data" id="updateCarForm">
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="submit" class="btn btn-primary" id="updateCarBtn">Save Changes</button>
+                </div>
+              </form> -->
+
+                <form method="POST" enctype="multipart/form-data" id="updateCarForm">
                   <input type="hidden" name="car_id" id="carIdToUpdate">  <div class="form-group mb-3">
                     <label for="updateName">Name</label>
                     <input type="text" name="name" class="form-control" id="updateName" placeholder="e.g. New Corolla Altis Hybrid">
@@ -130,7 +130,7 @@ $baseUrl = 'http://toyota.test/admin';
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="submit" form="updateCarForm" class="btn btn-primary">Save Changes</button>
+                <button type="submit" form="updateCarForm" name="update" class="btn btn-primary">Save Changes</button>
               </div>
             </div>
           </div>
@@ -183,7 +183,7 @@ $baseUrl = 'http://toyota.test/admin';
                 <div class="tab-pane fade show active" id="mpv-justified" role="tabpanel" aria-labelledby="mpv-tab">
                   <div class="row">
                     
-                  <?php $fetch=$con->query("SELECT * FROM cars WHERE `type` = 'mpv' AND `active` = 1"); ?>
+                  <?php $fetch=$con->query("SELECT * FROM cars WHERE `type` = 'mpv'"); ?>
                     <?php while ($data = $fetch->fetch_assoc()) { ?>
                     
                     <div class="col-lg-3 d-flex">
@@ -194,9 +194,10 @@ $baseUrl = 'http://toyota.test/admin';
                           <h5 class="card-title"><?= $data['name'] ; ?></h5>
                           <p class="card-text">Rp. <?= number_format($data['price'], 0, '.', ','); ?></p>
                           <input type="hidden" name="carIdToUpdate" value="<?= $data['id']; ?>">
-                          <button type="button" class="btn btn-warning edit-car-btn" data-car-id="<?= $data['id']; ?>" >
+                          <!-- <button type="button" class="btn btn-warning edit-car-btn" data-car-id="<?= $data['id']; ?>" >
                             Edit
-                          </button>
+                          </button> -->
+                          <a href="config/update-cars.php?id=<?= $data['id'] ; ?>" class="btn btn-warning">Edit</a>
                           <a href="#" class="btn btn-danger">Delete</a>
                         </div>
                       </div>
@@ -220,7 +221,7 @@ $baseUrl = 'http://toyota.test/admin';
                         <div class="card-body">
                           <h5 class="card-title"><?php echo $data['name'] ; ?></h5>
                           <p class="card-text">Rp. <?= number_format($data['price'], 0, '.', ','); ?></p>
-                          <a href="#" class="btn btn-warning">Edit</a>
+                          <a href="config/update-cars.php?id=<?= $data['id'] ; ?>" class="btn btn-warning">Edit</a>
                           <a href="#" class="btn btn-danger">Delete</a>
                         </div>
                       </div>
@@ -234,7 +235,7 @@ $baseUrl = 'http://toyota.test/admin';
                 <div class="tab-pane fade" id="hatchback-justified" role="tabpanel" aria-labelledby="hatchback-tab">
                   <div class="row">
                     
-                    <?php $fetch=$con->query("SELECT * FROM cars WHERE `type` = 'hatchback' AND `active` = 1"); ?>
+                    <?php $fetch=$con->query("SELECT * FROM cars WHERE `type` = 'hatchback'"); ?>
                     <?php while ($data = $fetch->fetch_assoc()) { ?>
                     
                     <div class="col-lg-3 d-flex">
@@ -244,7 +245,7 @@ $baseUrl = 'http://toyota.test/admin';
                         <div class="card-body">
                           <h5 class="card-title"><?php echo $data['name'] ; ?></h5>
                           <p class="card-text">Rp. <?= number_format($data['price'], 0, '.', ','); ?></p>
-                          <a href="#" class="btn btn-warning">Edit</a>
+                          <a href="config/update-cars.php?id=<?= $data['id'] ; ?>" class="btn btn-warning">Edit</a>
                           <a href="#" class="btn btn-danger">Delete</a>
                         </div>
                       </div>
@@ -258,7 +259,7 @@ $baseUrl = 'http://toyota.test/admin';
                 <div class="tab-pane fade" id="electrified-justified" role="tabpanel" aria-labelledby="electrified-tab">
                   <div class="row">
                     
-                    <?php $fetch=$con->query("SELECT * FROM cars WHERE `type` = 'electrified' AND `active` = 1"); ?>
+                    <?php $fetch=$con->query("SELECT * FROM cars WHERE `type` = 'electrified'"); ?>
                     <?php while ($data = $fetch->fetch_assoc()) { ?>
                     
                     <div class="col-lg-3 d-flex">
@@ -268,7 +269,7 @@ $baseUrl = 'http://toyota.test/admin';
                         <div class="card-body">
                           <h5 class="card-title"><?php echo $data['name'] ; ?></h5>
                           <p class="card-text">Rp. <?= number_format($data['price'], 0, '.', ','); ?></p>
-                          <a href="#" class="btn btn-warning">Edit</a>
+                          <a href="config/update-cars.php?id=<?= $data['id'] ; ?>" class="btn btn-warning">Edit</a>
                           <a href="#" class="btn btn-danger">Delete</a>
                         </div>
                       </div>
@@ -282,7 +283,7 @@ $baseUrl = 'http://toyota.test/admin';
                 <div class="tab-pane fade" id="sports-justified" role="tabpanel" aria-labelledby="sports-tab">
                   <div class="row">
                     
-                    <?php $fetch=$con->query("SELECT * FROM cars WHERE `type` = 'sports' AND `active` = 1"); ?>
+                    <?php $fetch=$con->query("SELECT * FROM cars WHERE `type` = 'sports'"); ?>
                     <?php while ($data = $fetch->fetch_assoc()) { ?>
                     
                     <div class="col-lg-3 d-flex">
@@ -292,7 +293,7 @@ $baseUrl = 'http://toyota.test/admin';
                         <div class="card-body">
                           <h5 class="card-title"><?php echo $data['name'] ; ?></h5>
                           <p class="card-text">Rp. <?= number_format($data['price'], 0, '.', ','); ?></p>
-                          <a href="#" class="btn btn-warning">Edit</a>
+                          <a href="config/update-cars.php?id=<?= $data['id'] ; ?>" class="btn btn-warning">Edit</a>
                           <a href="#" class="btn btn-danger">Delete</a>
                         </div>
                       </div>
@@ -306,7 +307,7 @@ $baseUrl = 'http://toyota.test/admin';
                 <div class="tab-pane fade" id="sedan-justified" role="tabpanel" aria-labelledby="sedan-tab">
                   <div class="row">
                     
-                    <?php $fetch=$con->query("SELECT * FROM cars WHERE `type` = 'sedan' AND `active` = 1"); ?>
+                    <?php $fetch=$con->query("SELECT * FROM cars WHERE `type` = 'sedan'"); ?>
                     <?php while ($data = $fetch->fetch_assoc()) { ?>
                     
                     <div class="col-lg-3 d-flex">
@@ -316,7 +317,7 @@ $baseUrl = 'http://toyota.test/admin';
                         <div class="card-body">
                           <h5 class="card-title"><?php echo $data['name'] ; ?></h5>
                           <p class="card-text">Rp. <?= number_format($data['price'], 0, '.', ','); ?></p>
-                          <a href="#" class="btn btn-warning">Edit</a>
+                          <a href="config/update-cars.php?id=<?= $data['id'] ; ?>" class="btn btn-warning">Edit</a>
                           <a href="#" class="btn btn-danger">Delete</a>
                         </div>
                       </div>
@@ -330,7 +331,7 @@ $baseUrl = 'http://toyota.test/admin';
                 <div class="tab-pane fade" id="commercial-justified" role="tabpanel" aria-labelledby="commercial-tab">
                   <div class="row">
                     
-                    <?php $fetch=$con->query("SELECT * FROM cars WHERE `type` = 'commercial' AND `active` = 1"); ?>
+                    <?php $fetch=$con->query("SELECT * FROM cars WHERE `type` = 'commercial'"); ?>
                     <?php while ($data = $fetch->fetch_assoc()) { ?>
                     
                     <div class="col-lg-3 d-flex">
@@ -340,7 +341,7 @@ $baseUrl = 'http://toyota.test/admin';
                         <div class="card-body">
                           <h5 class="card-title"><?php echo $data['name'] ; ?></h5>
                           <p class="card-text">Rp. <?= number_format($data['price'], 0, '.', ','); ?></p>
-                          <a href="#" class="btn btn-warning">Edit</a>
+                          <a href="config/update-cars.php?id=<?= $data['id'] ; ?>" class="btn btn-warning">Edit</a>
                           <a href="#" class="btn btn-danger">Delete</a>
                         </div>
                       </div>
@@ -401,73 +402,91 @@ $(document).on('click', '.edit-car-btn', function(e) {
   });
 });
 
+
+  // document.getElementById('updateCarBtn').addEventListener('click', updateCar);
+
 // Handle form submission in the update modal (assuming form ID is "updateCarForm")
-$('#updateCarForm').submit(function(e) {
-  e.preventDefault(); // Prevent default form submission
+// $('#updateCarForm').submit(function(e) {
+//   e.preventDefault(); // Prevent default form submission
 
-  // Get form data (consider using FormData for file uploads)
-  var formData = new FormData($(this)[0]); // Assuming form has ID "updateCarForm"
+//   // Get form data (consider using FormData for file uploads)
+//   var formData = new FormData($(this)[0]); // Assuming form has ID "updateCarForm"
 
-  let carId = $(this).data('carId');
-  // Use AJAX to send update data
-  $.ajax({
-    // url: 'http://localhost/toyota/admindfdf/config/update-cars.php', // Replace with your actual update endpoint
-    url: '<?php echo $baseUrl; ?>/config/update-cars.php?id=' . carId, // Replace with your actual update endpoint
-    type: 'PUT',
-    data: formData,
-    processData: false, // Don't process data for file uploads
-    contentType: false, // Set appropriate content type for FormData
-    success: function(response, error) {
-      if (response.success) {
-        // Handle successful update (e.g., close modal, show success message, update displayed data)
-        $('#updateCarModal').modal('hide');
-        alert('Car updated successfully!');
+//   let carId = $(this).data('carId');
+//   // Use AJAX to send update data
+//   $.ajax({
+//     // url: 'http://localhost/toyota/admindfdf/config/update-cars.php', // Replace with your actual update endpoint
+//     url: '<?php echo $baseUrl; ?>/config/update-cars.php', // Replace with your actual update endpoint
+//     type: 'POST',
+//     data: formData,
+//     contentType: false, // Set appropriate content type for FormData
+//     success: function(response, error) {
+//       if (response.success) {
+//         // Handle successful update (e.g., close modal, show success message, update displayed data)
+//         $('#updateCarModal').modal('hide');
+//         alert('Car updated successfully!');
 
-        // Update the displayed car data on the page (if applicable)
-        // Replace "updateCarList" with your actual function/method to update the displayed list
-        updateCarList();
-      } else {
-        // Handle update error (e.g., display error message)
-        alert('Error updating car!' + response.message + error);
-      }
-    },
-    error: function(xhr, status, error) {
-      alert('An error occurred: ' + error);
-    }
-  });
-});
+//         // Update the displayed car data on the page (if applicable)
+//         // Replace "updateCarList" with your actual function/method to update the displayed list
+//         updateCarList();
+//       } else {
+//         // Handle update error (e.g., display error message)
+//         alert('Error updating car!' + response.message + error);
+//       }
+//     },
+//     error: function(xhr, status, error) {
+//       alert('An error occurred: ' + error);
+//     }
+//   });
+// });
 
-// $('.btn-update-kategori').on('click', function (e) {
-//         e.preventDefault();
-//         let form=$('.form-kategori')[0];
-//         let data=new FormData(form);
-//         let carId = $(this).data('carId');
-//         const categoryId = $("#current_id_category").val();
-//         // Perform the update AJAX request with form data
-//         let url='http://localhost/toyota/admin/config/update-carsphp?carId=' . carId;
 
-//         url=url.replace(':CategoryId',categoryId);
-//         console.log(url);
-//         $.ajax({
-//             headers: {
-//                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-//             },
-//             url : url,
-//             type: 'POST',
-//             data: data,
-//             dataType: 'json',
-//             processData: false,
-//             contentType: false,
-//             cache: false,
-//             success: function (updateResponse) {
-//                 // Handle the success response (e.g., close the modal, update UI, etc.)
-//                 $('#update-modal').modal('hide');
-//                 window.location.reload();
-//             },
-//             error: function (updateError) {
-//                 console.error('Error updating category:', updateError);
-//             }
-//         });
-//     });
+// function updateCar(e) {
+//   e.preventDefault(); // Prevent default form submission
+
+//   // Get form data
+//   const carId = document.getElementById('carIdToUpdate').value;
+//   const name = document.getElementById('updateName').value;
+//   const price = parseFloat(document.getElementById('updatePrice').value);
+//   const type = document.getElementById('updateType').value;
+//   const isActive = document.getElementById('updateActive').checked ? 1 : 0;
+
+//   // Prepare form data as FormData (for handling file uploads)
+//   const formData = new FormData();
+//   formData.append('car_id', carId);
+//   formData.append('name', name);
+//   formData.append('price', price);
+//   formData.append('type', type);
+//   formData.append('active', isActive);
+
+//   const photo = document.getElementById('updatePhoto').files[0];
+//   if (photo) {
+//     formData.append('photo', photo);
+//   }
+
+//   // Send AJAX request
+//   fetch('<?php echo $baseUrl; ?>/config/update-cars.php', {
+//     method: 'POST',
+//     body: formData
+//   })
+//   .then(response => response.text()) // Parse response as text
+//   .then(data => {
+//     // Handle response data (success or error message)
+//     if (data.includes('Data Diubah')) {
+//       // Update UI on success (e.g., close modal, show success message)
+//       console.log('Car updated successfully!');
+//       document.getElementById('updateCarModal').modal('hide');
+//       // (Optional) Update car list table using another AJAX request
+//     } else {
+//       console.error('Error updating car:', data);
+//       // Display error message to the user
+//     }
+//   })
+//   .catch(error => {
+//     console.error('AJAX error:', error);
+//     // Handle AJAX errors
+//   });
+// }
+
 
 </script>
